@@ -1,0 +1,16 @@
+
+version: "3.3"
+
+services:
+  nuxtjs:
+    ports:
+      - 7000:7000
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+      - /usr/src/app/.nuxt
+    env_file:
+      - .env
