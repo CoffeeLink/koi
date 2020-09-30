@@ -1,6 +1,13 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
+  env: {
+    baseUrl: process.env.API_URI || 'http://localhost:7000'
+  },
+  server: {
+    port: process.env.PORT || 7000,
+    host: '0.0.0.0'
+  },
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     titleTemplate: '%s - koi',
