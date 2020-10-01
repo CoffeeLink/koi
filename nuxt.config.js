@@ -1,9 +1,4 @@
-import colors from 'vuetify/es5/util/colors'
-
 export default {
-  env: {
-    baseUrl: process.env.API_URI || 'http://localhost:7000'
-  },
   server: {
     port: process.env.PORT || 7000,
     host: '0.0.0.0'
@@ -50,25 +45,13 @@ export default {
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
+  axios: {
+    baseUrl: process.env.API_URL || 'http://localhost:3000'
+  },
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
-    theme: {
-      dark: true,
-      themes: {
-        dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3
-        }
-      }
-    }
+    customVariables: ['~/assets/variables.scss']
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
