@@ -7,6 +7,7 @@ const createStore = () => {
       fishes: [],
       provinsi: [],
       kota: [],
+      kotaObj: {},
       sizes: [],
       loading: true
     },
@@ -15,6 +16,7 @@ const createStore = () => {
       allFishes: state => state.fishes,
       allProvinces: state => state.provinsi,
       allCitys: state => state.kota,
+      allProvWithCity: state => state.kotaObj,
       allSizes: state => state.sizes,
       stateLoading: state => state.loading
     },
@@ -33,17 +35,22 @@ const createStore = () => {
 
         const { data } = response
         const kotaObj = {}
+        const kotaByProv = {}
         const provinsiObj = {}
         const kotaArr = []
         const provinsiArr = []
 
         data.map((area) => {
-          if (area.city) {
-            kotaObj[area.city] = true
+          if (area.province) {
+            if (!(area.province in kotaByProv)) {
+              kotaByProv[area.province] = []
+            }
+            provinsiObj[area.province] = true
           }
 
-          if (area.province) {
-            provinsiObj[area.province] = true
+          if (area.city) {
+            kotaByProv[area.province].push(area.city)
+            kotaObj[area.city] = true
           }
         })
 
@@ -55,6 +62,7 @@ const createStore = () => {
           provinsiArr.push(key)
         }
 
+        commit('setObjCitys', { ...kotaByProv })
         commit('setCitys', kotaArr)
         commit('setProvices', provinsiArr)
       },
@@ -134,15 +142,34 @@ const createStore = () => {
         }
 
         commit('setFishes', sortedFish)
+      },
+
+      async postNewFish ({ commit }, data) {
+        try {
+          const posted = []
+          posted.push(data)
+          await this.$axios.post('list', posted)
+          const newData = { ...data }
+          newData.price = newData.price ? parseInt(newData.price.split('.').join('')) : 0
+          newData.area_kota = newData.area_kota ? newData.area_kota : null
+          newData.size = parseInt(newData.size)
+          commit('addNewFishes', newData)
+
+          return 'Sukses menambahkan data'
+        } catch {
+          throw new Error('Gagal menambahkan data, check koneksimu')
+        }
       }
     },
 
     mutations: {
       setFishes: (state, fishes) => (state.fishes = [...fishes]),
       setCitys: (state, city) => (state.kota = [...city]),
+      setObjCitys: (state, city) => (state.kotaObj = { ...city }),
       setProvices: (state, provice) => (state.provinsi = [...provice]),
       setSizes: (state, sizes) => (state.sizes = [...sizes]),
-      setLoading: (state, load) => (state.loading = load)
+      setLoading: (state, load) => (state.loading = load),
+      addNewFishes: (state, fish) => (state.fishes.push(fish))
     }
   })
 }
