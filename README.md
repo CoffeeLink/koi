@@ -27,3 +27,8 @@ $ docker-compose up
 
 # serve with hot reload at localhost:7000
 ```
+
+## Live Demo
+```bash
+$ http://koi-app.herokuapp.com/
+```
