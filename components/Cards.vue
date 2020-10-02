@@ -5,7 +5,7 @@
         <v-col
           v-for="(numb, index) in 12"
           :key="numb+index"
-          cols="3"
+          class="col-sm-4 col-lg-3 col-xl-2"
         >
           <v-skeleton-loader
             class="mx-auto"
@@ -21,7 +21,7 @@
         <v-col
           v-for="(ind, index) in datas"
           :key="index"
-          cols="3"
+          class=" col-sm-4 col-lg-3 col-xl-2"
         >
           <Card
             :komoditas="ind.komoditas"
