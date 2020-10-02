@@ -1,20 +1,29 @@
 # koi
+![main-page](https://user-images.githubusercontent.com/24809011/94900931-0cce2300-04c0-11eb-99d4-50066aa23bf3.png)
+KOI (Toko Ikan) website terbesar jual beli online ikan Nusantara
 
-## Build Setup
-
+## Run Dev
 ```bash
-# install dependencies
-$ npm install
+# clone repo
+$ clone this repo
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+# go inside directory
+$ cd koi
 
-# build for production and launch server
-$ npm run build
-$ npm run start
+# install dependencies 
+$ yarn install
 
-# generate static project
-$ npm run generate
+# serve with hot reload at localhost:7000
+$ yarn dev
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+## Run Docker
+```bash
+# go inside directory
+$ cd koi
+
+# docker-compose up
+$ docker-compose up
+
+# serve with hot reload at localhost:7000
+```
