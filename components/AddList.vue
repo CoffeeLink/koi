@@ -78,7 +78,7 @@
             <v-autocomplete
               v-model="newData.size"
               :items="listsize"
-              color="#00793a"
+              color="#00ffff"
               dense
               outlined
               clearable
